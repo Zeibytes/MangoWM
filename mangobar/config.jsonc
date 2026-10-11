@@ -1,0 +1,127 @@
+{
+    "layer": "top",
+    "height": 30,
+    "buffer-scale": 1,
+    "modules-left": [
+        "custom/power",
+        "workspaces",
+        "layout",
+    ],
+    "modules-center": [
+    "window"
+  ],
+    "modules-right": [
+        "hideclients",
+        "tray",
+        "cpu",
+        "memory",
+        "pulseaudio",
+        "clock#date",
+        "clock#time",
+    ],
+    "workspaces": {
+        "hide-empty": true,
+        "pinned": [1, 2, 3, 4, 5],
+        "tag-names": ["", "", "", "", ""],
+        "overview-label": "OVERVIEW",
+        "on-click": "activate",
+        "on-click-right": "toggle",
+        "scroll-interval": 100,
+        "on-scroll-up": "mmsg dispatch viewtoleft_have_client",
+        "on-scroll-down": "mmsg dispatch viewtoright_have_client"
+    },
+    "layout": {
+        "format": "{}"
+    },
+    "window": {
+        "format": "{}",
+        "on-click": "bash ~/.config/mango/scripts/screenshot.sh",
+        "on-click-right": "python /home/wrq/tool/ocr.py"
+    },
+    "network": {
+        "format": "󰈀 {ifname}",
+        "format-alt": "↓{down} ↑{up}"
+    },
+    "hideclients": {
+        "format": " {}"
+    },
+    "cpu": {
+        "format": " {load}%"
+    },
+    "memory": {
+        "format": " {}%"
+    },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "icons": [
+            "󰃞",
+            "󰃟",
+            "󰃝",
+            "󰃝",
+            "󰃠",
+            "󰃠",
+            "󰃠"
+        ],
+        "on-scroll-up": "bash ~/.config/mango/scripts/brightness.sh bup",
+        "on-scroll-down": "bash ~/.config/mango/scripts/brightness.sh bdown",
+        "on-click": "brightnessctl set 1%"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}% {bt}",
+        "format-muted": "󰖁 {volume}% {bt}",
+        "icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "icon-bluetooth": "󰂯",
+        "on-click": "pamixer -t",
+        "on-scroll-up": "pamixer -i 2",
+        "on-scroll-down": "pamixer -d 2"
+    },
+    "battery": {
+        "format": "{icon} {percent}% {ac}",
+        "icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ],
+        // "icon-charging": "󰂄",
+        // "icon-full": "󰁹",
+        "icon-ac": "",
+        "hide-on-ac": true
+    },
+    "clock#date": {
+        "format": " {:L%b%d·%A}"
+    },
+    "clock#time": {
+        "format": " {:L%H:%M}"
+    },
+    "tray": {
+        "icon-size": 25,
+        "spacing": 10
+    },
+    "custom/power": {
+        "format": "󰣇",
+        "on-click": "wlogout -C ~/.config/mango/wlogout/style.css -l ~/.config/mango/wlogout/layout -b 6 --protocol layer-shell",
+        "on-click-right": "sleep 0.1s && swaync-client -t -sw"
+    },
+    "custom/clock": {
+        "exec": "date | cut -d ' ' -f 1",
+        "interval": 5,
+        "signal": 8,
+    }
+}
